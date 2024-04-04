@@ -1,0 +1,13 @@
+Aufagben:
+
+1. Start Screen
+2. Musik + Sound
+3. Coins einsammeln
+4. Flaschen einsammeln
+5. Flaschen nur werfen, wenn welche vorhanden sind
+6. Flaschen Collision
+7. Gegner durch springen töten
+8. Endgegner Besiegen
+9. Game-Over Screen
+10. Fullscreen Modus .> Canvas.requestFullscreen
+11. Erkläsrung zum Spielen
