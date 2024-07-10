@@ -5,6 +5,7 @@ class MovableObject extends DrawableObject {
     acceleration = 2.5;
     energy = 100;
     lastHit = 0;
+    isJumping = false;
 
     applyGravity() {
         setInterval(() => {
@@ -46,13 +47,14 @@ class MovableObject extends DrawableObject {
 
     jump() {
         this.speedY = 33;
+        this.isJumping = true;
     }
 
     isColliding(obj) {
-        return (this.x + this.width) >= obj.x && this.x <= (obj.x + obj.width) &&
-            (this.y + this.height) >= obj.y && //+ this.offsetY
-            (this.y) <= (obj.y + obj.height)// &&  //+ this.offsetY
-            ; //obj.onCollisionCourse
+        return  (this.x + this.width) >= obj.x && this.x <= (obj.x + obj.width) && 
+                (this.y + this.offsetY + this.height) >= obj.y &&
+                (this.y + this.offsetY) <= (obj.y + obj.height);
+             //obj.onCollisionCourse
         // Optional: hiermit könnten wir schauen, 
         //ob ein Objekt sich in die richtige Richtung 
         //bewegt. Nur dann kollidieren wir. Nützlich bei 
@@ -76,4 +78,5 @@ class MovableObject extends DrawableObject {
         timepassed = timepassed / 1000;
         return timepassed < 1;
     }
+
 }

@@ -13,21 +13,44 @@ class Endboss extends MovableObject{
         '/img/4_enemie_boss_chicken/2_alert/G11.png',
         '/img/4_enemie_boss_chicken/2_alert/G12.png'
     ];
+    IMAGES_HURT = [
+        'img/4_enemie_boss_chicken/4_hurt/G21.png',
+        'img/4_enemie_boss_chicken/4_hurt/G22.png',
+        'img/4_enemie_boss_chicken/4_hurt/G23.png'
+    ];
+    IMAGES_DEAD = [
+        'img/4_enemie_boss_chicken/5_dead/G24.png',
+        'img/4_enemie_boss_chicken/5_dead/G25.png',
+        'img/4_enemie_boss_chicken/5_dead/G26.png'
+    ];
 
     hadFirstContact = false;
+    percentage = 100;
 
     constructor(){
         super().loadImage(this.IMAGES_ALERT[0]);
         this.loadImages(this.IMAGES_ALERT);
+        this.loadImages(this.IMAGES_HURT);
+        this.loadImages(this.IMAGES_DEAD);
         this.x = 1800;
         this.animate();
     };
+    setPercentage(percentage){
+        this.percentage = this.percentage - percentage;  // => 0,,,,,5
+        console.log(this.percentage);
+    }
 
     animate(){
         let i = 0;
         setInterval(()=>{
             if (world.character.x > 1300 && !this.hadFirstContact) {
                 this.playAnimation(this.IMAGES_ALERT);
+            }if(this.percentage <= 10){
+                this.playAnimation(this.IMAGES_DEAD);
+                setTimeout(()=>{
+                restartGame();
+                },2000);
+
             }
         }, 190);
     }

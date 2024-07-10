@@ -11,3 +11,4 @@ Aufagben:
 9. Game-Over Screen
 10. Fullscreen Modus .> Canvas.requestFullscreen
 11. Erkläsrung zum Spielen
+3

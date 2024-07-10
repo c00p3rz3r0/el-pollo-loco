@@ -26,7 +26,7 @@ class DrawableObject {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 
-    drawFrame(ctx) {
+    /**drawFrame(ctx) {
 
         if (this instanceof Character || this instanceof Chicken || this instanceof Endboss || this instanceof Bottles) {
             ctx.beginPath();
@@ -36,7 +36,7 @@ class DrawableObject {
             ctx.stroke();
         }
 
-    }
+    }*/
 
     
     resolveImgageIndex(i){

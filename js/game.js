@@ -2,11 +2,21 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 
-function init() {
+function startgame() {
     canvas = document.getElementById('canvas');
+    initLevel();
+    world = [];
     world = new World(canvas, keyboard);
+    canvas.classList.remove('display-none');
+    document.getElementById('startGame').classList.add('display-none');
+    document.getElementById('bgImg').classList.add('display-none');
     console.log('My Charecter is', world.character);
 }
+
+function restartGame(){
+    location.reload();
+}
+
 
 window.addEventListener('keydown', (event) => {
     if (event.keyCode == 37) {
@@ -48,10 +58,64 @@ window.addEventListener('keyup', (event) => {
         keyboard.D = false;
     }
 })
+document.addEventListener('DOMContentLoaded', (event)=>{
+    let imgLeft = document.getElementById('left');
+    imgLeft.addEventListener('touchstart', (e) =>{
+        e.preventDefault();
+        keyboard.LEFT = true;
+    });
+    imgLeft.addEventListener('touchend', (e) =>{
+        e.preventDefault();
+        keyboard.LEFT = false;
+    });
+});
+document.addEventListener('DOMContentLoaded', (event)=>{
+    let imgLeft = document.getElementById('right');
+    imgLeft.addEventListener('touchstart', (e) =>{
+        e.preventDefault();
+        keyboard.RIGHT = true;
+    });
+    imgLeft.addEventListener('touchend', (e) =>{
+        e.preventDefault();
+        keyboard.RIGHT = false;
+    });
+});
+document.addEventListener('DOMContentLoaded', (event)=>{
+    let imgLeft = document.getElementById('jump');
+    imgLeft.addEventListener('touchstart', (e) =>{
+        e.preventDefault();
+        keyboard.SPACE = true;
+    });
+    imgLeft.addEventListener('touchend', (e) =>{
+        e.preventDefault();
+        keyboard.SPACE = false;
+    });
+});
+document.addEventListener('DOMContentLoaded', (event)=>{
+    let imgLeft = document.getElementById('bottle');
+    imgLeft.addEventListener('touchstart', (e) =>{
+        e.preventDefault();
+        keyboard.D = true;
+    });
+    imgLeft.addEventListener('touchend', (e) =>{
+        e.preventDefault();
+        keyboard.D = false;
+    });
+});
+
+
 
 function stopGame() {
-    clearAllIntervals();
+   // clearAllIntervals();
+    showEndSequen();
 }
+
+function showEndSequen(){
+    world.level.bottles = [];
+    world.level.enemies = [];
+    world.level.coins = [];
+}
+
 
 function clearAllIntervals() {
     for (let i = 0; i < 9999; i++) {
