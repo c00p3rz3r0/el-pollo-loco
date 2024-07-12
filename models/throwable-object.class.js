@@ -43,6 +43,7 @@ class ThrowableObject extends MovableObject{
                     clearInterval(throwInterval);
                     clearInterval(hitThrow);
                     world.level.enemies[i].setPercentage(25);
+                    world.statusBarBoss.setPercentage(25);
                 }
                 if (this.y >= 300 ) {
                     this.playAnimation(this.IMAGES_SPLASH);
