@@ -8,7 +8,7 @@ class World {
   statusBar = new StatusBar(20,0);
   bottleBar = new BottleBar();
   coinBar = new CoinBar();
-  statusBarBoss = new StatusBarBoss (1850,120);
+  statusBarBoss = new StatusBarBoss ();
   thowableObjects = [];
   collectedBottles = 0;
   collectedCoins = 0;
