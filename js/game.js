@@ -10,7 +10,6 @@ function startgame() {
     canvas.classList.remove('display-none');
     document.getElementById('startGame').classList.add('display-none');
     document.getElementById('bgImg').classList.add('display-none');
-    console.log('My Charecter is', world.character);
 }
 
 function restartGame(){

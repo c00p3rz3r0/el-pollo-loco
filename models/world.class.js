@@ -8,7 +8,7 @@ class World {
   statusBar = new StatusBar(20,0);
   bottleBar = new BottleBar();
   coinBar = new CoinBar();
-  statusBarBoss = new StatusBarBoss (500,0);
+  statusBarBoss = new StatusBarBoss (1850,120);
   thowableObjects = [];
   collectedBottles = 0;
   collectedCoins = 0;
@@ -88,25 +88,10 @@ class World {
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-    this.ctx.translate(this.camera_x, 0);
-    this.addObjectsToMap(this.level.backgroundobjects);
-    this.addObjectsToMap(this.level.clouds);
-    this.ctx.translate(-this.camera_x, 0);
-    // Space for fixed Objects
-
-    this.addToMap(this.statusBar);
-    this.addToMap(this.bottleBar);
-    this.addToMap(this.coinBar);
-    this.addToMap(this.statusBarBoss);
-    this.ctx.translate(this.camera_x, 0);
-
-    this.addToMap(this.character);
-
-    this.addObjectsToMap(this.level.enemies);
-    this.addObjectsToMap(this.thowableObjects);
-    this.addObjectsToMap(this.level.bottles);
-    this.addObjectsToMap(this.level.coins);
+    this.addBackground();
+    this.addFixedObjects();
+    this.addLevelObject();
+  
     if (this.character.energy == 0) {
       let randomNum = Math.floor(Math.random() * 4);
       this.level.endimg[randomNum].x = this.character.x-100;
@@ -116,12 +101,36 @@ class World {
     }
 
     this.ctx.translate(-this.camera_x, 0);
+    this.playDraw();
+  }
 
-    //draw() wird immer wieder aufgerufen;
+  playDraw(){
     let self = this;
     requestAnimationFrame(function () {
       self.draw();
     });
+  }
+
+  addLevelObject(){
+    this.ctx.translate(this.camera_x, 0);
+    this.addToMap(this.character);
+    this.addToMap(this.statusBarBoss);
+    this.addObjectsToMap(this.level.enemies);
+    this.addObjectsToMap(this.thowableObjects);
+    this.addObjectsToMap(this.level.bottles);
+    this.addObjectsToMap(this.level.coins);
+  }
+
+  addBackground(){
+    this.ctx.translate(this.camera_x, 0);
+    this.addObjectsToMap(this.level.backgroundobjects);
+    this.addObjectsToMap(this.level.clouds);
+  }
+  addFixedObjects(){
+    this.ctx.translate(-this.camera_x, 0);
+    this.addToMap(this.statusBar);
+    this.addToMap(this.bottleBar);
+    this.addToMap(this.coinBar);
   }
 
   addObjectsToMap(objects) {
@@ -134,10 +143,7 @@ class World {
     if (mo.otherDirection) {
       this.flipImage(mo);
     }
-
     mo.draw(this.ctx);
-    //mo.drawFrame(this.ctx);
-
     if (mo.otherDirection) {
       this.flipImageBack(mo);
     }

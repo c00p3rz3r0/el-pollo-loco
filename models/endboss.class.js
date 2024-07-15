@@ -36,8 +36,7 @@ class Endboss extends MovableObject{
         this.animate();
     };
     setPercentage(percentage){
-        this.percentage = this.percentage - percentage;  // => 0,,,,,5
-        console.log(this.percentage);
+        this.percentage = this.percentage - percentage; 
     }
 
     animate(){
@@ -45,6 +44,9 @@ class Endboss extends MovableObject{
         setInterval(()=>{
             if (world.character.x > 1300 && !this.hadFirstContact) {
                 this.playAnimation(this.IMAGES_ALERT);
+                setInterval(() => {
+                    this.moveLeft();
+                  }, 1000 / 60);
             }if(this.percentage <= 10){
                 this.playAnimation(this.IMAGES_DEAD);
                 setTimeout(()=>{

@@ -23,7 +23,7 @@ class CoinBar extends DrawableObject{
     }
     
     setPercentage(percentage){
-        this.percentageCoin = percentage *20;  // => 0,,,,,5
+        this.percentageCoin = percentage *20; 
         if (this.percentageCoin > 100) {
             this.percentageCoin = 100;
         }

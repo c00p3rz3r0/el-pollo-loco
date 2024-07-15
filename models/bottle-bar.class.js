@@ -19,7 +19,7 @@ class BottleBar extends DrawableObject{
         this.setPercentage(this.percentageBottle);
     }
     setPercentage(percentage){
-        this.percentageBottle = percentage * 20;  // => 0,,,,,5
+        this.percentageBottle = percentage * 20; 
         if (this.percentageBottle > 100) {
             this.percentageBottle = 100;
         }
