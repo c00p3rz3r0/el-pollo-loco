@@ -51,12 +51,13 @@ class Endboss extends MovableObject{
         setInterval(()=>{
             if (world.character.x > 1300 && !this.hadFirstContact) {
                 this.playAnimation(this.IMAGES_ALERT);
-                setInterval(() => {
-                    this.moveLeft();
-                  }, 1000 / 60);
-                  setInterval(() => {
-                    this.playAnimation(this.IMAGES_WALKING);
-                  }, 190);
+                if (world.character.x < this.x) {
+                    setInterval(() => {
+                        this.moveLeft();
+                        this.playAnimation(this.IMAGES_WALKING);
+                        this.otherDirection = false;
+                      }, 1000 / 100);
+                }
             }if(this.percentage <= 10){
                 this.playAnimation(this.IMAGES_DEAD);
                 setTimeout(()=>{
