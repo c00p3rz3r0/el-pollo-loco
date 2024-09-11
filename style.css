@@ -59,7 +59,8 @@ canvas{
     justify-content: center;
     flex-direction: column;
     img{
-        height: 420px;
+        height: 100vh;
+        max-height: 480px;
     }
 
 }

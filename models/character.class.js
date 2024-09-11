@@ -64,7 +64,9 @@ class Character extends MovableObject{
     walking_sound = new Audio('/audio/running.mp3')
     offsetY = 0;
     isDeadIMG = 1;
-
+/**
+ * load images of the character
+ */
     constructor(){
         super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
 
@@ -77,8 +79,17 @@ class Character extends MovableObject{
         this.applyGravity();
         this.animate();
     }
-
+    /**
+     * Play the Animation of the character
+     */
     animate(){
+        this.movingCharacter();
+        this.playingDiffAnimation();
+    };
+    /**
+     * Moving Animations of Pepe
+     */
+    movingCharacter(){
         setInterval(()=>{
             this.walking_sound.pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
@@ -97,15 +108,18 @@ class Character extends MovableObject{
 
             this.world.camera_x = -this.x +100;
         },1000/60);
+    }
+/**
+ * Playing Animations of Dead, Hurt, Long Idle, Jumping
+ */
+    playingDiffAnimation(){
         setInterval(()=>{
-
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
                 this.isDeadIMG ++;
                 if (this.isDeadIMG > 7) {
                     stopGame();
                 }
-
             }else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             }else if (this.isAboveGround()) {

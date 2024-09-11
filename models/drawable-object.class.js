@@ -25,7 +25,11 @@ class DrawableObject {
     draw(ctx){
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
-    
+    /**
+     * calculate the percentage of the Status bars
+     * @param {number} i 
+     * @returns 
+     */
     resolveImgageIndex(i){
         if (i == 100) {
             return 5;

@@ -15,13 +15,21 @@ class CoinBar extends DrawableObject{
         this.width = 200;
         this.height = 60;
     }
+    /**
+     * position of the coinbar
+     * @param {number} x 
+     * @param {number} y 
+     */
     loadCoinBar(x, y){
         this.loadImages(this.IMAGES_COIN);
         this.setPercentage(this.percentageCoin, this.IMAGES_COIN);
         this.x = x;
         this.y = y;
     }
-    
+    /**
+     * ste the percentage of the coin bar to calculate the images
+     * @param {number} percentage 
+     */
     setPercentage(percentage){
         this.percentageCoin = percentage *20; 
         if (this.percentageCoin > 100) {

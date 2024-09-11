@@ -1,7 +1,9 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
-
+/**
+ * load the game and print the canvas
+ */
 function startgame() {
     canvas = document.getElementById('canvas');
     initLevel();
@@ -11,12 +13,16 @@ function startgame() {
     document.getElementById('startGame').classList.add('display-none');
     document.getElementById('bgImg').classList.add('display-none');
 }
-
+/**
+ * restert the game
+ */
 function restartGame(){
     location.reload();
 }
 
-
+/**
+ * eventlistener for key down
+ */
 window.addEventListener('keydown', (event) => {
     if (event.keyCode == 37) {
         keyboard.LEFT = true;
@@ -37,6 +43,9 @@ window.addEventListener('keydown', (event) => {
         keyboard.D = true;
     }
 })
+/**
+ * eventlistener for key up
+ */
 window.addEventListener('keyup', (event) => {
     if (event.keyCode == 37) {
         keyboard.LEFT = false;
@@ -57,6 +66,9 @@ window.addEventListener('keyup', (event) => {
         keyboard.D = false;
     }
 })
+/**
+ * eventlistener for key by touch
+ */
 document.addEventListener('DOMContentLoaded', (event)=>{
     let imgLeft = document.getElementById('left');
     imgLeft.addEventListener('touchstart', (e) =>{
@@ -68,6 +80,9 @@ document.addEventListener('DOMContentLoaded', (event)=>{
         keyboard.LEFT = false;
     });
 });
+/**
+ * eventlistener for key by touch
+ */
 document.addEventListener('DOMContentLoaded', (event)=>{
     let imgLeft = document.getElementById('right');
     imgLeft.addEventListener('touchstart', (e) =>{
@@ -79,6 +94,9 @@ document.addEventListener('DOMContentLoaded', (event)=>{
         keyboard.RIGHT = false;
     });
 });
+/**
+ * eventlistener for key by touch
+ */
 document.addEventListener('DOMContentLoaded', (event)=>{
     let imgLeft = document.getElementById('jump');
     imgLeft.addEventListener('touchstart', (e) =>{
@@ -90,6 +108,9 @@ document.addEventListener('DOMContentLoaded', (event)=>{
         keyboard.SPACE = false;
     });
 });
+/**
+ * eventlistener for key by touch
+ */
 document.addEventListener('DOMContentLoaded', (event)=>{
     let imgLeft = document.getElementById('bottle');
     imgLeft.addEventListener('touchstart', (e) =>{
@@ -102,10 +123,7 @@ document.addEventListener('DOMContentLoaded', (event)=>{
     });
 });
 
-
-
 function stopGame() {
-   // clearAllIntervals();
     showEndSequen();
 }
 
@@ -114,31 +132,35 @@ function showEndSequen(){
     world.level.enemies = [];
     world.level.coins = [];
 }
-
-
+/**
+ * stop all intervalls of the game
+ */
 function clearAllIntervals() {
     for (let i = 0; i < 9999; i++) {
         window.clearInterval(i);
-
     }
 }
-//OPen Fullscreen
+/**
+ * open fullscreen
+ */
 function openFullscreen() {
     if (elem.requestFullscreen) {
         elem.requestFullscreen();
-    } else if (elem.webkitRequestFullscreen) { /* Safari */
+    } else if (elem.webkitRequestFullscreen) {
         elem.webkitRequestFullscreen();
-    } else if (elem.msRequestFullscreen) { /* IE11 */
+    } else if (elem.msRequestFullscreen) {
         elem.msRequestFullscreen();
     }
 }
-/* Close fullscreen */
+/**
+ * end fullscreen
+ */
 function closeFullscreen() {
     if (document.exitFullscreen) {
         document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) { /* Safari */
+    } else if (document.webkitExitFullscreen) {
         document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) { /* IE11 */
+    } else if (document.msExitFullscreen) {
         document.msExitFullscreen();
     }
 }

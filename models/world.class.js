@@ -14,7 +14,11 @@ class World {
   collectedCoins = 0;
   longIdle = 1 ;
   throwActual = new Date().getTime();
-
+/**
+ * 
+ * @param {print Canvas} canvas 
+ * @param {get Keyboard information} keyboard 
+ */
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
@@ -27,7 +31,9 @@ class World {
   setWorld() {
     this.character.world = this;
   }
-
+/**
+ * Start Game 
+ */
   run() {
     setInterval(() => {
       this.checkCollisions();
@@ -37,7 +43,9 @@ class World {
       this.checkEnemyHit();
     }, 50);
   }
-
+/**
+ * Check hit an enemy
+ */
   checkEnemyHit(){
     this.level.enemies.forEach((enemy, i) => {
       if (this.character.isColliding(enemy) && this.character.isAboveGround()&& this.character.speedY<=-2) {
@@ -46,7 +54,9 @@ class World {
       }
   });
   }
-
+/**
+ *Check Collision with an enemy 
+ */
   checkCollisions() {
     this.level.enemies.forEach((enemy) => {
        if (this.character.isColliding(enemy)&& !this.character.isAboveGround()) {
@@ -55,6 +65,9 @@ class World {
       }
     });
   }
+  /**
+   * Check collect an item
+   */
   checkCollect(item) {
     for (let i = 0; i < this.level[item].length; i++) {
       const element = this.level[item][i];
@@ -70,6 +83,9 @@ class World {
     }
   } 
 }
+/**
+ * Check to throw a bottle
+ */
   checkThrowObject() {
     if (this.keyboard.D && this.collectedBottles > 1) {
       let newBottle = new Date().getTime();
@@ -85,7 +101,10 @@ class World {
     }
     }
   }
-
+/**
+ * Draw Canvas with content
+ * @returns Play End IMG
+ */
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.addBackground();
@@ -103,34 +122,43 @@ class World {
     this.ctx.translate(-this.camera_x, 0);
     this.playDraw();
   }
-
+  /**
+   * Draw the cnavas again
+   */
   playDraw(){
     let self = this;
     requestAnimationFrame(function () {
       self.draw();
     });
   }
-
+/**
+ * Add Level Object 
+ */
   addLevelObject(){
     this.ctx.translate(this.camera_x, 0);
     this.addToMap(this.character);
-    this.addToMap(this.statusBarBoss);
     this.addObjectsToMap(this.level.enemies);
     this.addObjectsToMap(this.thowableObjects);
     this.addObjectsToMap(this.level.bottles);
     this.addObjectsToMap(this.level.coins);
   }
-
+/**
+ * Add BAckgroun Images 
+ */
   addBackground(){
     this.ctx.translate(this.camera_x, 0);
     this.addObjectsToMap(this.level.backgroundobjects);
     this.addObjectsToMap(this.level.clouds);
   }
+  /**
+   * Add Object that don´t move
+   */
   addFixedObjects(){
     this.ctx.translate(-this.camera_x, 0);
     this.addToMap(this.statusBar);
     this.addToMap(this.bottleBar);
     this.addToMap(this.coinBar);
+    this.addToMap(this.statusBarBoss);
   }
 
   addObjectsToMap(objects) {
@@ -148,7 +176,10 @@ class World {
       this.flipImageBack(mo);
     }
   }
-
+  /**
+   * Flip the Image of movable Objectsa
+   * @param {Object} mo 
+   */
   flipImage(mo) {
     this.ctx.save();
     this.ctx.translate(mo.width, 0);

@@ -6,7 +6,9 @@ class MovableObject extends DrawableObject {
     energy = 100;
     lastHit = 0;
     isJumping = false;
-
+/**
+ * calculate the gravity
+ */
     applyGravity() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
@@ -16,7 +18,10 @@ class MovableObject extends DrawableObject {
 
         }, 1000 / 25);
     }
-
+/**
+ * check the character is above ground
+ * @returns 
+ */
     isAboveGround() {
         if (this instanceof ThrowableObject) {
             return true;
@@ -32,7 +37,10 @@ class MovableObject extends DrawableObject {
     moveLeft() {
         this.x -= this.speed;
     }
-
+/**
+ * Play animation 
+ * @param {images of the character or enemie} images 
+ */
     playAnimation(images) {
         let i = this.currentImage % images.length;
         let path = images[i];
@@ -44,7 +52,11 @@ class MovableObject extends DrawableObject {
         this.speedY = 33;
         this.isJumping = true;
     }
-
+/**
+ * Is the character coliding with an enemie
+ * @param {enemies} obj 
+ * @returns 
+ */
     isColliding(obj) {
         return  (this.x + this.width) >= obj.x && this.x <= (obj.x + obj.width) && 
                 (this.y + this.offsetY + this.height) >= obj.y &&

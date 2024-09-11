@@ -14,7 +14,11 @@ class ThrowableObject extends MovableObject{
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png'
     ];
     offsetY = -100;
-
+/**
+ * 
+ * @param {koordinat x} x 
+ * @param {koordinat y} y 
+ */
     constructor(x,y){
         super().loadImage('img/6_salsa_bottle/salsa_bottle.png');
         this.loadImages(this.IMAGES_THROW);
@@ -25,7 +29,11 @@ class ThrowableObject extends MovableObject{
         this.width = 60;
         this.throw();
     }
-
+    /**
+     * Throw and play anaimation of the Bottles
+     * @param {position} x 
+     * @param position} y 
+     */
     throw(x,y){
         this.speedY = 30;
         this.applyGravity();

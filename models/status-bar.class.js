@@ -10,7 +10,11 @@ class StatusBar extends DrawableObject {
 
 
     percentage = 100;
-
+/**
+ * 
+ * @param {koordinat x} x 
+ * @param {koordinat y} y 
+ */
     constructor(x,y){
         super();
         this.loadImages(this.IMAGES_HEALTH);

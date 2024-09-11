@@ -8,7 +8,9 @@ class Chicken extends MovableObject {
     "/img/3_enemies_chicken/chicken_normal/1_walk/3_w.png",
   ];
   speed = 0.2;
-
+/**
+ * load chicken images
+ */
   constructor() {
     super().loadImage("/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png");
     this.x = 350 + (Math.random() * 500 + 200);
@@ -16,7 +18,9 @@ class Chicken extends MovableObject {
     this.loadImages(this.IMAGES_WALKING);
     this.animate();
   }
-
+/**
+ * animate moving interval and images
+ */
   animate() {
     setInterval(() => {
       this.moveLeft();
