@@ -49,6 +49,7 @@ class World {
   checkEnemyHit(){
     this.level.enemies.forEach((enemy, i) => {
       if (this.character.isColliding(enemy) && this.character.isAboveGround()&& this.character.speedY<=-2) {
+
         world.level.enemies.splice(i,1);
         this.character.jump();
       }
@@ -58,11 +59,13 @@ class World {
  *Check Collision with an enemy 
  */
   checkCollisions() {
-    this.level.enemies.forEach((enemy) => {
-       if (this.character.isColliding(enemy)&& !this.character.isAboveGround()) {
+    this.level.enemies.forEach((enemys) => {
+      this.level.endboss.forEach((enemy)=>{
+       if ((this.character.isColliding(enemy)||this.character.isColliding(enemys))&& !this.character.isAboveGround()) {
         this.character.hit();
         this.statusBar.setPercentage(this.character.energy);
       }
+    });
     });
   }
   /**
@@ -138,6 +141,7 @@ class World {
     this.ctx.translate(this.camera_x, 0);
     this.addToMap(this.character);
     this.addObjectsToMap(this.level.enemies);
+    this.addObjectsToMap(this.level.endboss);
     this.addObjectsToMap(this.thowableObjects);
     this.addObjectsToMap(this.level.bottles);
     this.addObjectsToMap(this.level.coins);

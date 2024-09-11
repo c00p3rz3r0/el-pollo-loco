@@ -48,9 +48,10 @@ canvas{
     justify-content: center;
     flex-direction: column;
     h1{
-        color: black;
+        color: white;
         margin: 0;
         font-size: 100px;
+        text-align: center;
     }
 }
 .start-game{
@@ -60,7 +61,6 @@ canvas{
     flex-direction: column;
     img{
         height: 100vh;
-        max-height: 480px;
     }
 
 }

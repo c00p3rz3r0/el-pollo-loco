@@ -31,12 +31,8 @@ class Endboss extends MovableObject{
     ]
 
     hadFirstContact = false;
-    isDead = false;
     percentage = 100;
-    statusBarBoss = [];
-/**
- * Load Images and set the x coordinate
- */
+
     constructor(){
         super().loadImage(this.IMAGES_ALERT[0]);
         this.loadImages(this.IMAGES_ALERT);
@@ -49,22 +45,20 @@ class Endboss extends MovableObject{
     setPercentage(percentage){
         this.percentage = this.percentage - percentage; 
     }
-/**
- * Animate the Endboss
- */
+
     animate(){
         let i = 0;
         setInterval(()=>{
-            if (world.character.x > 1300 && !this.hadFirstContact && !this.isDead) {
+            if (world.character.x > 1300 && !this.hadFirstContact) {
                 this.playAnimation(this.IMAGES_ALERT);
-                moveleft = setInterval(() => {
-                    this.moveLeft();
-                  }, 10000 / 60);
-                 animationleft = setInterval(() => {
-                    this.playAnimation(this.IMAGES_WALKING);
-                  }, 190);
+                if (world.character.x < this.x) {
+                    setInterval(() => {
+                        this.moveLeft();
+                        this.playAnimation(this.IMAGES_WALKING);
+                        this.otherDirection = false;
+                      }, 1000 / 100);
+                }
             }if(this.percentage <= 10){
-                this.isDead=true
                 this.playAnimation(this.IMAGES_DEAD);
                 setTimeout(()=>{
                 restartGame();

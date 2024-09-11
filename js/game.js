@@ -17,7 +17,15 @@ function startgame() {
  * restert the game
  */
 function restartGame(){
-    location.reload();
+    canvas = document.getElementById('canvas');
+    level1 = [];
+    level = [];
+    world = [];
+    character = [];
+    initLevel();
+    world = new World(canvas, keyboard);
+    debugger;
+    canvas.classList.remove('display-none');
 }
 
 /**
