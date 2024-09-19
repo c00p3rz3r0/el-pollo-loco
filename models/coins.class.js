@@ -6,6 +6,8 @@ class Coins extends DrawableObject{
     width = 100;
     height = 100;
     y = 360;
+    offsetX = 50;
+    offsetY = 15;
     
     constructor(){
         super().loadImage('img/8_coin/coin_1.png');

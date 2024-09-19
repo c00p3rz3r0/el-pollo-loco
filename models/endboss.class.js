@@ -31,8 +31,16 @@ class Endboss extends MovableObject{
     ]
 
     hadFirstContact = false;
+    isDead = false;
     percentage = 100;
-
+    offsetX = 30;
+    offsetY = 60;
+    statusBarBoss = [];
+    name = 'endboss';
+    endboss;
+/**
+ * Load Images and set the x coordinate
+ */
     constructor(){
         super().loadImage(this.IMAGES_ALERT[0]);
         this.loadImages(this.IMAGES_ALERT);
@@ -45,26 +53,32 @@ class Endboss extends MovableObject{
     setPercentage(percentage){
         this.percentage = this.percentage - percentage; 
     }
-
+/**
+ * Animate the Endboss
+ */
     animate(){
         let i = 0;
-        setInterval(()=>{
-            if (world.character.x > 1300 && !this.hadFirstContact) {
+        this.endboss = setInterval(()=>{
+            if (world.character.x > 1300 && !this.hadFirstContact && !this.isDead) {
                 this.playAnimation(this.IMAGES_ALERT);
-                if (world.character.x < this.x) {
-                    setInterval(() => {
-                        this.moveLeft();
-                        this.playAnimation(this.IMAGES_WALKING);
-                        this.otherDirection = false;
-                      }, 1000 / 100);
-                }
+                setInterval(() => {
+                    this.moveLeft();
+                  }, 10000 / 60);
+                 setInterval(() => {
+                    this.playAnimation(this.IMAGES_WALKING);
+                  }, 190);
             }if(this.percentage <= 10){
-                this.playAnimation(this.IMAGES_DEAD);
-                setTimeout(()=>{
-                restartGame();
-                },2000);
-
+                this.isDead=true
+                this.deadanimation();
             }
         }, 190);
-    }
+    };
+    deadanimation(){
+        clearInterval(this.endboss);
+        setInterval(()=>{
+            this.playAnimation(this.IMAGES_DEAD);
+            setTimeout(()=>{
+                stopGame();
+                },2000);});}
+
 };

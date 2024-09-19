@@ -19,7 +19,6 @@ class StatusBarBoss extends DrawableObject {
         this.width = 200;
         this.height = 60;
         this.setPercentage(0);
-        this.animate();
     }
     setPercentage(percentage){
         this.percentage = this.percentage - percentage;  
@@ -27,10 +26,4 @@ class StatusBarBoss extends DrawableObject {
         this.img = this.imageCache[imagePath];
     }
 
-    animate(){
-        setInterval(()=>{
-            this.x = world.level.endboss[0].x;
-        }, 20);
-
-    }
 }

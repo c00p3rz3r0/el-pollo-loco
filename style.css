@@ -48,10 +48,9 @@ canvas{
     justify-content: center;
     flex-direction: column;
     h1{
-        color: white;
+        color: black;
         margin: 0;
         font-size: 100px;
-        text-align: center;
     }
 }
 .start-game{
@@ -60,9 +59,14 @@ canvas{
     justify-content: center;
     flex-direction: column;
     img{
-        height: 100vh;
-    }
 
+        max-height: 480px;
+    }
+}
+.end-game-img{
+    position: absolute;
+    max-width: 720px;
+    margin-top: -480px;
 }
 .button{
     position: absolute;
@@ -73,6 +77,18 @@ canvas{
     font-family: 'zabars', Arial, Helvetica, sans-serif;
     font-size: 48px;
     color: white;
+}
+.links-ds{
+    display: flex;
+    flex-direction: column;
+    max-width: 1024;
+    font-size: 24px;
+    padding-left: 30px;
+    a{
+        text-decoration: none;
+        color: black;
+        cursor: pointer;
+    }
 }
 .btn-restart{
 
@@ -119,6 +135,11 @@ canvas{
     }
     h1{
         display: none;
+    }
+    .start-game{
+        img{
+        max-height: 100vh;
+        }
     }
 
 }

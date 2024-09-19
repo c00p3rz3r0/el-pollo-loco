@@ -63,7 +63,9 @@ class Character extends MovableObject{
     speed = 10;
     walking_sound = new Audio('/audio/running.mp3')
     offsetY = 0;
+    offsetX = 10;
     isDeadIMG = 1;
+
 /**
  * load images of the character
  */
@@ -82,6 +84,7 @@ class Character extends MovableObject{
     /**
      * Play the Animation of the character
      */
+
     animate(){
         this.movingCharacter();
         this.playingDiffAnimation();

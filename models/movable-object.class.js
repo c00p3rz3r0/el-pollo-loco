@@ -14,6 +14,9 @@ class MovableObject extends DrawableObject {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
+                if (this.y > 150) {
+                    this.y = 150;
+                }
             }
 
         }, 1000 / 25);
@@ -58,9 +61,9 @@ class MovableObject extends DrawableObject {
  * @returns 
  */
     isColliding(obj) {
-        return  (this.x + this.width) >= obj.x && this.x <= (obj.x + obj.width) && 
-                (this.y + this.offsetY + this.height) >= obj.y &&
-                (this.y + this.offsetY) <= (obj.y + obj.height);
+        return  (this.x + this.width) >= (obj.x + obj.offsetX) && this.x <= (obj.x + obj.width - obj.offsetX) && 
+                (this.y + this.offsetY + this.height) >= (obj.y + obj.offsetY) &&
+                (this.y + obj.offsetY) <= (obj.y + obj.height);
     }
 
     hit() {

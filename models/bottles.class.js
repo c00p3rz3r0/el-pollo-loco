@@ -8,6 +8,7 @@ class Bottles extends DrawableObject{
     height = 70;
     y = 360;
     offsetY = 0;
+    offsetX = 50;
     /**
      * load bottles with a random position in the world
      */

@@ -8,6 +8,8 @@ class Chicken extends MovableObject {
     "/img/3_enemies_chicken/chicken_normal/1_walk/3_w.png",
   ];
   speed = 0.2;
+  offsetX = 30;
+  offsetY = 15;
 /**
  * load chicken images
  */

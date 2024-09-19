@@ -6,6 +6,7 @@ let keyboard = new Keyboard();
  */
 function startgame() {
     canvas = document.getElementById('canvas');
+    document.getElementById('mute').classList.remove('display-none');
     initLevel();
     world = [];
     world = new World(canvas, keyboard);
@@ -13,19 +14,31 @@ function startgame() {
     document.getElementById('startGame').classList.add('display-none');
     document.getElementById('bgImg').classList.add('display-none');
 }
+function mute(){
+    world.character.walking_sound.muted = true;
+    world.bgMusic.muted = true;
+    document.getElementById('unmute').classList.remove('display-none');
+    document.getElementById('mute').classList.add('display-none');
+    document.getElementById('unmutem').classList.remove('display-none');
+    document.getElementById('mutem').classList.add('display-none');
+};
+function unmute(){
+    world.character.walking_sound.muted = false;
+    world.bgMusic.muted = false;
+    document.getElementById('unmute').classList.add('display-none');
+    document.getElementById('mute').classList.remove('display-none');
+    document.getElementById('unmutem').classList.add('display-none');
+    document.getElementById('mutem').classList.remove('display-none');
+}
 /**
  * restert the game
  */
 function restartGame(){
-    canvas = document.getElementById('canvas');
-    level1 = [];
-    level = [];
-    world = [];
-    character = [];
+    document.getElementById('restartGame').classList.add('display-none');
+    document.getElementById('bgImg').classList.add('display-none')
     initLevel();
+    world = [];
     world = new World(canvas, keyboard);
-    debugger;
-    canvas.classList.remove('display-none');
 }
 
 /**
@@ -102,6 +115,8 @@ document.addEventListener('DOMContentLoaded', (event)=>{
         keyboard.RIGHT = false;
     });
 });
+
+
 /**
  * eventlistener for key by touch
  */
@@ -132,14 +147,15 @@ document.addEventListener('DOMContentLoaded', (event)=>{
 });
 
 function stopGame() {
-    showEndSequen();
+    document.getElementById('restartGame').classList.remove('display-none');
+    let randomNum = Math.floor(Math.random() * 4);
+    let imgpath = 'img/9_intro_outro_screens/game_over/'+randomNum+'.png';
+    document.getElementById('bgImg').src = imgpath;
+      document.getElementById('bgImg').classList.remove('display-none')
+      document.getElementById('bgImg').classList.add('end-game-img')
+    clearAllIntervals();
 }
 
-function showEndSequen(){
-    world.level.bottles = [];
-    world.level.enemies = [];
-    world.level.coins = [];
-}
 /**
  * stop all intervalls of the game
  */

@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" href="img/2_character_pepe/1_idle/idle/I-1.png" type="fa">
-  <title>Document</title>
+  <link rel="shortcut icon" href="img/2_character_pepe/1_idle/idle/I-1.png" type="image/x-icon">
+  <title>El Polo Loco</title>
   <link rel="stylesheet" href="style.css" />
   <script src="models/drawable-object.class.js"></script>
   <script src="models/movable-object.class.js"></script>
@@ -37,18 +37,21 @@
     <div class="inner-page">
       <canvas class="display-none" id="canvas" width="720" height="480">
       </canvas>
-
       <div class="start-game">
         <img id="bgImg" src="img/9_intro_outro_screens/start/startscreen_2.png" alt="" />
         <button class="button" id="startGame" onclick="startgame()">Start Game</button>
-        <button class="button btn-restart display-none" id="restartGame" onclick="restartGame()">Restart Game</button>
+        <button class="button btn-restart display-none" id="restartGame" onclick="restartGame()">Back to Start</button>
       </div>
+  
 
 
       <div class="instructions">
         <span>Arrows Left/Right = Walk</span>
         <span>Spacebar = Jump</span>
         <span>D = Throw Bottle</span>
+        <img id="mute" src="img/10_icons-mobile/mute.png" style="width: 25px; height: 25px;" onclick="mute()" alt="" class="display-none">
+        <img id="unmute" src="img/10_icons-mobile/unmute.png"style="width: 25px; height: 25px;" onclick="unmute()" class="display-none" alt="">
+        <span id="unmute" class="display-none" onclick="unmute()">Unmute</span>
         <a style="text-decoration: underline; color: black; cursor: pointer;" href="impressum.html" target="_blank">Impressum</a>
       </div>
       <div class="mobile_btn">
@@ -59,8 +62,8 @@
         </div>
         <div>
           <img id="bottle" src="img/10_icons-mobile/bottle_throw.png" alt="">
-          <img id="mute" src="img/10_icons-mobile/mute.png" alt="">
-          <img src="img/10_icons-mobile/unmute.png" class="display-none" alt="">
+          <img id="mutem" src="img/10_icons-mobile/mute.png" onclick="mute()" alt="">
+          <img id="unmutem" src="img/10_icons-mobile/unmute.png" onclick="unmute()" class="display-none" alt="">
         </div>
       </div>
     </div>
