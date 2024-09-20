@@ -6,14 +6,19 @@ class ThrowableObject extends MovableObject{
         'img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png'
     ];
     IMAGES_SPLASH = [
-        'img/6_salsa_bottle/bottle_rotation/bottle_splash/1_bottle_splash.png',
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/2_bottle_splash.png',
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/3_bottle_splash.png',
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/4_bottle_splash.png',
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/5_bottle_splash.png',
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png'
     ];
+    IMAGES_SPLASH_GROUND = [
+        'img/6_salsa_bottle/bottle_rotation/bottle_splash/1_bottle_splash.png'
+    ];
     offsetY = -100;
+    splashGround = new Audio('/audio/bottle.mp3');
+    throwsound = new Audio('/audio/throwbottle.mp3');
+    bottlehit = new Audio('/audio/bottlehit.mp3');
 /**
  * 
  * @param {koordinat x} x 
@@ -23,6 +28,7 @@ class ThrowableObject extends MovableObject{
         super().loadImage('img/6_salsa_bottle/salsa_bottle.png');
         this.loadImages(this.IMAGES_THROW);
         this.loadImages(this.IMAGES_SPLASH);
+        this.loadImages(this.IMAGES_SPLASH_GROUND);
         this.x = x;
         this.y = y;
         this.height = 90;
@@ -41,20 +47,23 @@ class ThrowableObject extends MovableObject{
         let throwInterval = setInterval(()=> {
         this.x += 12;
         this.playAnimation(this.IMAGES_THROW);
+        this.throwsound.play();
         }, 30);
 
         let hitThrow = setInterval(()=>{
         world.level.enemies.forEach((enemy, i) => {
             if(this.isColliding(enemy) || this.x == 360){
                 this.playAnimation(this.IMAGES_SPLASH);
+                    this.bottlehit.play();
                     world.level.enemies[i].playAnimation(world.level.enemies[i].IMAGES_HURT)
                     clearInterval(throwInterval);
                     clearInterval(hitThrow);
                     world.level.enemies[i].setPercentage(25);
                     world.statusBarBoss.setPercentage(25);
                 }
-                if (this.y >= 300 ) {
+                if (this.y >= 400 && this.speedY<20) {
                     this.playAnimation(this.IMAGES_SPLASH);
+                    this.splashGround.play();
                     clearInterval(throwInterval);
                     clearInterval(hitThrow);
                 }

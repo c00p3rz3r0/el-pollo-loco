@@ -51,12 +51,6 @@ function initLevel() {
             new Coins(),
             new Coins(),
             new Coins()
-        ],
-        [
-            new BackgroungObject('img/9_intro_outro_screens/game_over/oh no you lost!.png', 0),
-            new BackgroungObject('img/9_intro_outro_screens/game_over/game over!.png', 0),
-            new BackgroungObject('img/9_intro_outro_screens/game_over/game over.png', 0),
-            new BackgroungObject('img/9_intro_outro_screens/game_over/you lost.png', 0)
         ]
     );
 }

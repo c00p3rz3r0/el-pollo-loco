@@ -15,7 +15,9 @@ class World {
   longIdle = 1 ;
   throwActual = new Date().getTime();
   bgMusic = new Audio('/audio/music.mp3');
-/**
+  collectCoinSound = new Audio('/audio/coincollect.mp3');
+  collectBottleSound = new Audio('/audio/bottlecollect.mp3');
+  /**
  * 
  * @param {print Canvas} canvas 
  * @param {get Keyboard information} keyboard 
@@ -89,11 +91,13 @@ class World {
       const element = this.level[item][i];
       if (this.character.isColliding(element) && !this.character.isAboveGround() && item == 'bottles') {
         this.collectedBottles ++;
+        this.collectBottleSound.play();
         this.bottleBar.setPercentage(this.collectedBottles);
         this.level[item].splice(i, 1);
       }
       if (this.character.isColliding(element) && !this.character.isAboveGround() && item == 'coins') {
         this.collectedCoins ++;
+        this.collectCoinSound.play();
         this.coinBar.setPercentage(this.collectedCoins);
         this.level[item].splice(i, 1);
     }

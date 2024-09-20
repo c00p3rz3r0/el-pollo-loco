@@ -62,6 +62,7 @@ class Character extends MovableObject{
     world;
     speed = 10;
     walking_sound = new Audio('/audio/running.mp3')
+    hurtsound = new Audio ('/audio/hurt.mp3')
     offsetY = 0;
     offsetX = 10;
     isDeadIMG = 1;
@@ -115,6 +116,9 @@ class Character extends MovableObject{
 /**
  * Playing Animations of Dead, Hurt, Long Idle, Jumping
  */
+
+    
+
     playingDiffAnimation(){
         setInterval(()=>{
             if (this.isDead()) {
@@ -124,6 +128,7 @@ class Character extends MovableObject{
                     stopGame();
                 }
             }else if (this.isHurt()) {
+                this.hurtsound.play();
                 this.playAnimation(this.IMAGES_HURT);
             }else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);

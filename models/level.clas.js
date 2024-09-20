@@ -4,7 +4,6 @@ class Level {
     backgroundobjects;
     bottles;
     coins;
-    endimg;
     level_end_x = 2200;
     /**
      * generate the hole level
@@ -21,6 +20,5 @@ class Level {
         this.backgroundobjects = backgroundobjects;
         this.bottles = bottles;
         this.coins = coins;
-        this.endimg = endimg;
     }
 }
